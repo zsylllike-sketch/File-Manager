@@ -1,131 +1,97 @@
-# File Manager (wxWidgets + C++17)
+# File Manager (C++17 + wxWidgets)
 
-## Author
-Shuyun Zheng  
-Jan 2026
+**Author:** Shuyun Zheng  
+**Date:** January 2026  
 
 ---
 
 ## Overview
 
-This project implements a **file manager** using **C++17** and **wxWidgets**.  
-It allows users to browse directories and perform basic file operations such as opening, copying, moving, renaming, and deleting files through a graphical interface.
+This project is a simple file manager implemented in **C++17** using the
+**wxWidgets** graphical framework.  
+It allows users to browse directories and perform basic file operations
+through a graphical user interface.
 
-The design focuses on:
-- Clear separation between **UI logic** and **file system operations**
-- Error handling
-- A user-friendly interface following typical desktop file manager behavior
+The purpose of this project is to gain experience with:
+- Object-oriented programming in C++
+- Using the C++17 `std::filesystem` library
+- Developing GUI applications with wxWidgets
+- Working in a Unix/Linux-style development environment
 
 ---
 
-## Features
+## Functionality
 
 ### Directory Browsing
-- Display files and directories in the current folder
-- Shows file properties:
+
+- Displays files and directories in the current folder
+- Shows the following file properties:
   - Name
-  - Type (File / Directory)
+  - Type (File or Directory)
   - Size
   - Last modified time
-- Supports navigation by user input
-- Supports navigating to the parent directory (`..`)
-- Refresh current directory list
-- Status bar
+- The current directory path is shown in a text bar
+  - The path bar is editable and can be used to change directories
+- Supports navigation by:
+  - Double-clicking directories
+  - Typing a path directly into the path bar
+- Includes a parent directory entry (`..`)
+- Status bar displays the current path and operation messages
+
+---
 
 ### File Operations
-All operations are accessible through menu items and keyboard shortcuts:
+
+All operations are accessible through the menu bar and keyboard shortcuts.
 
 - **Open**
   - Opens files using the system’s default application
-  - Navigates into directories when selected
+  - If a directory is selected, navigates into that directory
+
 - **Create Directory**
-  - Prompts the user for a new directory name
+  - Prompts the user to enter a new directory name
+
 - **Rename**
-  - Prompts for a new name
-  - Supports overwrite confirmation
+  - Prompts the user for a new name
+  - Requests confirmation if the destination already exists
+
 - **Delete**
-  - Prompts the user before deleting files or directories
+  - Prompts the user for confirmation before deleting files or directories
+
 - **Copy / Cut / Paste**
-  - Implements a virtual clipboard
-  - Supports recursive copy for directories
+  - Implements a virtual clipboard (not the system clipboard)
+  - Supports both files and directories
+  - Directory copy is recursive
   - Prompts before overwriting existing files
+  - Clears the clipboard after a successful paste
+
 - **Refresh**
-  - Reloads the current directory listing
+  - Reloads the contents of the current directory
+
 - **Exit**
-  - Closes the application safely
+  - Closes the application
 
 ## Build Instructions
-
 This program was developed and tested on a Unix-like environment with wxWidgets installed.
 
 ### Requirements
-
-C++17 compatible compiler (clang++ or g++)
-
-wxWidgets (version 3.2 or newer recommended)
-
-wx-config available in your PATH
+- C++17 compatible compiler (clang++ or g++)
+- wxWidgets (version 3.2 or newer recommended)
+- wx-config available in your PATH
 
 ### Compile
-
 - From the project directory, run:
-
-make
-
-This will compile all source files and produce the executable.
-
+  make
+  This will compile all source files and produce the executable.
 - If wxWidgets is not found, make sure wx-config is installed and accessible:
+  wx-config --version
 
-wx-config --version
+### Testing Environment
+- Tested on macOS
+- wxWidgets version 3.3
+- Compiled using clang++ with -std=c++17
 
----
-
-## Architecture
-
-The project is structured into two main components:
-
-### 1. `MainFrame`
-Responsible for:
-- Creating and managing the GUI
-- Handling user input and events
-- Displaying directory contents
-- Coordinating file operations
-
-Key responsibilities:
-- Path bar handling
-- File list display
-- Menu command handling
-- Clipboard state management
-
-### 2. `FileOp`
-A utility class that encapsulates all filesystem operations using `std::filesystem`.
-
-Responsibilities:
-- File and directory existence checks
-- Creation, deletion, renaming
-- Recursive copy and move operations
-- Centralized error handling via `std::error_code`
-
-This separation keeps UI logic independent from filesystem logic.
-
----
-
-## Technologies Used
-
-- **Language:** C++17
-- **GUI Library:** wxWidgets
-- **Filesystem API:** `std::filesystem`
-- **Build Tool:** Make / clang++
-
----
-
-## Build & Run
-
-### Requirements
-- wxWidgets (built with C++17 support)
-- clang++ or g++
-- Unix-like environment (Linux, macOS, or WSL)
-
-### Build
-```bash
-make
+### Known Limitations
+- No support for multiple selection operations
+- No drag-and-drop support
+- Limited error recovery for certain filesystem permission errors
