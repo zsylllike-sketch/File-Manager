@@ -43,31 +43,24 @@ The purpose of this project is to gain experience with:
 ### File Operations
 
 All operations are accessible through the menu bar and keyboard shortcuts.
-
 - **Open**
   - Opens files using the system’s default application
   - If a directory is selected, navigates into that directory
-
 - **Create Directory**
   - Prompts the user to enter a new directory name
-
 - **Rename**
   - Prompts the user for a new name
   - Requests confirmation if the destination already exists
-
 - **Delete**
   - Prompts the user for confirmation before deleting files or directories
-
 - **Copy / Cut / Paste**
   - Implements a virtual clipboard (not the system clipboard)
   - Supports both files and directories
   - Directory copy is recursive
   - Prompts before overwriting existing files
   - Clears the clipboard after a successful paste
-
 - **Refresh**
   - Reloads the contents of the current directory
-
 - **Exit**
   - Closes the application
 
