@@ -91,6 +91,8 @@ This program was developed and tested on a Unix-like environment with wxWidgets 
 - wxWidgets version 3.3
 - Compiled using clang++ with -std=c++17
 
+---
+
 ### Known Limitations
 - No support for multiple selection operations
 - No drag-and-drop support
